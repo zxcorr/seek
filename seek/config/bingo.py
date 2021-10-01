@@ -33,8 +33,7 @@ import os
 # LIST OF PLUGINGS THAT SEEK (IVY) WILL RUN  -- THEY ARE LOCATED IN
 # THE PLUGINS DIRECTORY -- FEEL FREE TO ADD OR REMOVE PLUGINS
 # ==================================================================
-plugins = ["seek.plugins.write_params",
-           "seek.plugins.find_nested_files",
+plugins = ["seek.plugins.find_nested_files",
            "seek.plugins.calibration",
            "seek.plugins.initialize",
 # comment out everything below when doing calibration-only analysis
@@ -53,6 +52,7 @@ plugins = ["seek.plugins.write_params",
                                      "seek.plugins.map_indicies",
                                      "seek.plugins.reduce_maps"),
             "seek.plugins.write_maps",
+            "seek.plugins.write_params",
             "ivy.plugin.show_stats",
             ]
 #"seek.plugins.write_params",
