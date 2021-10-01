@@ -41,7 +41,7 @@ P_PHASE1_KEY = "P/Phase1"
 MODE_PHASE_SWITCH = "phase_switch"
 MODE_TOTAL_POWER = "total_power"
 
-SPECTROMETER_M9703A = 'M9703A'
+SPECTROMETER_M9703A = "fake_bingo_spectrometer" #'M9703A'
 FITS_FILE_TYPE = 'fits'
 HDF5_FILE_TYPE = 'hdf5'
 
