@@ -115,7 +115,7 @@ def load_tod(file_paths, ctx):
     assert min_frequency <= frequencies[-1] 
     
     min_freq_idx = np.sum(frequencies<min_frequency)
-    max_freq_idx = np.sum(frequencies<=max_frequency)
+    max_freq_idx = np.sum(frequencies<=max_frequency) 
     main_freqs = frequencies[min_freq_idx:max_freq_idx] 
     strategy_start = get_observation_start(file_paths[0], ctx.params.file_type)
     
@@ -233,8 +233,8 @@ def _get_data_from_hdf5(path, m9703a_mode):
     :returns tod, frequencies: data and the frequency of the data
     """
     with h5py.File(path, "r") as fp:
-        p_phase0 = fp["P/Phase0"].value
-        p_phase1 = fp["P/Phase1"].value
+        p_phase0 = fp["P/Phase0"][()]
+        p_phase1 = fp["P/Phase1"][()]
 
         if m9703a_mode == MODE_PHASE_SWITCH:
             tod = p_phase1 - p_phase0
@@ -243,8 +243,8 @@ def _get_data_from_hdf5(path, m9703a_mode):
         else:
             raise TypeError("Unsupported M9703A_MODE: '%s'"%m9703a_mode)
         
-        frequencies = fp[FREQUENCIES_KEY].value
-        time_axis = fp[TIME_KEY].value
+        frequencies = fp[FREQUENCIES_KEY][()]
+        time_axis = fp[TIME_KEY][()]
     date = get_observation_start_from_hdf5(path)
     date_in_h = date.hour + date.minute / 60 + date.second / 3600
     time_axis = date_in_h + 1. / 3600 * time_axis
@@ -256,16 +256,16 @@ def _get_spectral_kurtosis_mask(path, accumulations, accumulation_offset):
 
     :param path: path to the file
     :param accumulations: number of accumulations for the kurtosis calculation
-    :param accumulation_offset: offset to convert the recorded values to physical
-    kurtosis values
+    :param accumulation_offset: offset to convert the recorded[()]s to physical
+    kurtosis[()]s
 
     :return: kurtosis-based RFI mask
     """
     with h5py.File(path, "r") as fp:
-        p_phase0 = fp["P/Phase0"].value
-        p_phase1 = fp["P/Phase1"].value
-        p2_phase0 = fp["P2/Phase0"].value
-        p2_phase1 = fp["P2/Phase1"].value
+        p_phase0 = fp["P/Phase0"][()]
+        p_phase1 = fp["P/Phase1"][()]
+        p2_phase0 = fp["P2/Phase0"][()]
+        p2_phase1 = fp["P2/Phase1"][()]
         mask = spectral_kurtosis_mask(p_phase0, 
                                       p_phase1, 
                                       p2_phase0, 

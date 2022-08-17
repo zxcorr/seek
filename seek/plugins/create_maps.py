@@ -50,8 +50,8 @@ class RestructuredTODStore(object):
         data, mask = [], []
         for fp in self._fps:
             try:
-                data.append(fp["%s/data"%idx].value) 
-                mask.append(fp["%s/mask"%idx].value)
+                data.append(fp["%s/data"%idx][()]) 
+                mask.append(fp["%s/mask"%idx][()])
             except KeyError: pass
         return np.ma.array(np.hstack(data),
                            mask=np.hstack(mask))

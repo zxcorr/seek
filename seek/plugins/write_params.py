@@ -5,7 +5,7 @@
 # 
 # SEEK is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
 # GNU General Public License for more details.
 # 
 # You should have received a copy of the GNU General Public License
@@ -42,8 +42,8 @@ def register_params(ctx):
     
     lines = config_file.readlines()
     for line in lines:
-    	p_file.write(line)
-        
+	p_file.write(line)
+	
 	config_file.close()
     p_file.close()
 	
@@ -56,7 +56,7 @@ class Plugin(BasePlugin):
     """
 
     def __call__(self):
-        register_params(self.ctx)
-        
+	register_params(self.ctx)
+	
     def __str__(self):
-        return "Register Params"
+	return "Register Params"

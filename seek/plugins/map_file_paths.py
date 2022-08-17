@@ -37,5 +37,5 @@ class Plugin(object):
                 yield ctx
             
 def chunk(iterable, n):
-    for i in xrange(0, len(iterable), n):
+    for i in range(0, len(iterable), n):
         yield iterable[i:i+n]

@@ -1,3 +1,6 @@
+*.dat
+seek/config/bingo_horn*
+
 *.py[cod]
 
 # C extensions

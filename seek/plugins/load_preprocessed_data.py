@@ -44,13 +44,13 @@ class Plugin(BasePlugin):
         
         self.ctx.strategy_start = load_data.get_observation_start_from_hdf5(filepath)
         with h5py.File(filepath, "r") as fp:
-            tod = np.ma.array(fp["data"].value, mask=fp["mask"].value)
+            tod = np.ma.array(fp["data"][()], mask=fp["mask"][()])
             self.ctx.tod_vx = tod
             self.ctx.tod_vy = tod.copy()
-            self.ctx.frequencies = fp["frequencies"].value
-            self.ctx.time_axis = fp["time"].value
-            self.ctx.coords = Coords(fp["ra"].value, fp["dec"].value, None, None, self.ctx.time_axis)
-            self.ctx.ref_channel = fp["ref_channel"].value
+            self.ctx.frequencies = fp["frequencies"][()]
+            self.ctx.time_axis = fp["time"][()]
+            self.ctx.coords = Coords(fp["ra"][()], fp["dec"][()], None, None, self.ctx.time_axis)
+            self.ctx.ref_channel = fp["ref_channel"][()]
 
             
     def __str__(self):
