@@ -35,14 +35,14 @@ def register_params(ctx):
     file_date_fmt = date[0] + date[1] + date[2]
 
     file_name = file_fmt.format(file_date_fmt)
-    file_path = os.path.join(output_path, date[0], date[1], date[2], file_name)
+    file_path = os.path.join(output_path, file_name)
     
     config_file = open(ctx.params.script_filename, "r")
-    p_file = open(file_path, "w")
+    p_file = open(file_path, "w+")
     
     lines = config_file.readlines()
     for line in lines:
-    p_file.write(line)
+        p_file.write(line)
     
     config_file.close()
     p_file.close()
@@ -56,7 +56,7 @@ class Plugin(BasePlugin):
     """
 
     def __call__(self):
-    register_params(self.ctx)
+        register_params(self.ctx)
     
     def __str__(self):
-    return "Register Params"
+        return "Register Params"
