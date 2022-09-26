@@ -19,6 +19,7 @@ author: Lucas Olivari
 
 import numpy as np
 import os
+import seek
 
 ####################################################################
 #### THIS IS THE SCRIPT THAT WILL RUN HIDE FOR EACH HORN
@@ -34,15 +35,15 @@ number_horns = 28
 # CHOOSE BINGO MODEL
 # ==================================================================
 
-bingo_model = 1 # either 1 or 2
+bingo_model = 0 # either 1 or 2
 
 # ==================================================================
 # CHOOSE DESTINATION AND WORKING PATHS
 # ==================================================================
 
-destination_path = "/usr/local/lib/python2.7/dist-packages/seek-0.1.0-py2.7.egg/seek/config/" #'~/anaconda2/lib/python2.7/site-packages/seek-0.1.0-py2.7.egg/seek/config/' # change to your destination (the place where your hide package is located within your python repository)
-output_path = "/home/otobone/Documentos/ic/projeto_karin/resultados/healpix_seek/test/"
-working_path = os.getcwd() + "/seek/config/"   #'/home/lucas/Documentos/work/seektest/seek/seek/config/' # change to your working path
+destination_path = os.path.join(seek.__path__[0], '/seek/config/') #"/usr/local/lib/python2.7/dist-packages/seek-0.1.0-py2.7.egg/seek/config/" #'~/anaconda2/lib/python2.7/site-packages/seek-0.1.0-py2.7.egg/seek/config/' # change to your destination (the place where your hide package is located within your python repository)
+output_path = "/scratch/bingo/joao.barretos/hide_and_seek/resultados/healpix/256_128/zernike_auto_150_MINUS110_nearest/"
+working_path = os.getcwd() + "/seek/config/"   # change to your working path
 
 # ==================================================================
 # SETTING THE CONFIG FILES FOR EACH HORN
@@ -72,11 +73,7 @@ for i in range(0, number_horns):
                              # coordinates file name for each horn -- input
 
         elif line == 'gain_file_default\n':
-            if bingo_model == 1:
-                destination.write('gain_file_default = "data/gain_template_fake_bingo_model_1_' + str(i) + '.dat"' + '\n') 
-                             # gain template used for each horn
-            elif bingo_model == 2:
-                destination.write('gain_file_default = "data/gain_template_fake_bingo_model_2_' + str(i) + '.dat"' + '\n') 
+            destination.write('gain_file_default = "data/gain_template_fake_bingo_model_{}_{}.dat"\n'.format(bingo_model, i)) 
                              # gain template used for each horn
             
         else:
@@ -90,5 +87,5 @@ for i in range(0, number_horns):
 
 for i in range(0, number_horns):
     print("\nExecuting horn {}\n".format(i))
-    os.system('sudo cp ' + working_path + 'bingo_horn_' + str(i) + '.py' + ' ' + destination_path)	 
+    os.system('cp ' + working_path + 'bingo_horn_' + str(i) + '.py' + ' ' + destination_path)	 
     os.system('seek seek.config.' + dfile_short + '_' + str(i)) # run seek

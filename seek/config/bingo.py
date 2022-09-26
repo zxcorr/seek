@@ -40,7 +40,7 @@ plugins = ["seek.plugins.find_nested_files",
            ParallelPluginCollection([
 #                                     "seek.plugins.load_preprocessed_data",
                                     "seek.plugins.load_data",
-                                    "seek.plugins.pre_process_tod",
+                                    "seek.plugins.pre_process_tod", #gain
                                     "seek.plugins.process_coords",
                                     "seek.plugins.post_process_tod",
                                     "seek.plugins.restructure_tod",
@@ -90,12 +90,12 @@ telescope_elevation = 0.   # altitude
 # ==================================================================
 # DATA LOADING
 # ==================================================================
-file_prefix = "/home/otobone/Documentos/ic/projeto_karin/resultados/TOD/freq_bingo/feixes/deg_1/2d/nside_256/fwhm_0_011/"                # location of the tod data
+file_prefix = "/scratch/bingo/joao.barretos/hide_and_seek/resultados/TOD/zernike_auto_150_MINUS110_nearest/"                # location of the tod data
 strategy_start = "2018-01-01-00:00:00"      # survey start time. Format YYYY-mm-dd-HH:MM:SS
 strategy_end   = "2018-01-05-23:59:59"      # survey end time. Format YYYY-mm-dd-HH:MM:SS
 file_date_format = "%Y%m%d_%H%M%S"          # Format of date part of file name
 integration_time = 1                       # no of pixel to use for integration in time (axis=1)
-max_frequency = 1270.
+max_frequency = 990.
 min_frequency = 980.
 integration_frequency = 1                   # no of pixel to use for integration in freq (axis=0)
 
@@ -128,7 +128,7 @@ accumulation_offset = 0                     # SEL_Curtosis_Range (default: P_Sel
 # MAP MAKING
 # ==================================================================
 map_maker = "seek.mapmaking.simple_mapper" # choose the map-making algorithm
-nside = 256                                 # choose the HEALPix nside             
+nside = 128                                 # choose the HEALPix nside             
 variance = False
 
 # ==================================================================
@@ -170,5 +170,5 @@ eta_i = [0.5, 0.55, 0.62, 0.75, 1]
 # ==================================================================
 # POSTPROCESSING
 # ==================================================================
-store_intermediate_result = True         # Flag if data, mask etc should be written to file
+store_intermediate_result = False         # Flag if data, mask etc should be written to file
 post_processing_prefix =".cache"         # Prefix used

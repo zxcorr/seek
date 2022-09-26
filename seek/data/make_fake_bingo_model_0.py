@@ -5,7 +5,7 @@
 # 
 # SEEK is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
 # GNU General Public License for more details.
 # 
 # You should have received a copy of the GNU General Public License
@@ -29,7 +29,7 @@ import os
 # CHOOSE DESTINATION PATHS
 # ==================================================================
 
-destination_path = '/usr/local/lib/python2.7/dist-packages/seek-0.1.0-py2.7.egg/seek/data/' # change to your destination (the place where your hide package is located within your python repository)
+destination_path = "/scratch/bingo/joao.barretos/hide_and_seek/seek-master/seek/data/" #'/usr/local/lib/python2.7/dist-packages/seek-0.1.0-py2.7.egg/seek/data/' # change to your destination (the place where your hide package is located within your python repository)
 
 # ==================================================================
 # BINGO PARAMETERS
@@ -57,10 +57,10 @@ amplitude_osc = 0.15 # dimensionless
 # Loop on the horns
 for i in range(0, number_horns):
 
-# OUTPUT
+    # OUTPUT
     output_gain = np.zeros((n_channels, 2))
     output_gain[:, 0] = frequencies
-    output_gain[:, 1] = np.full(n_channels,1)                #output_gain[:, 1] = bingo_fake_gain
+    output_gain[:, 1] = np.full(n_channels,1)		     #output_gain[:, 1] = bingo_fake_gain
 
     dfile = "gain_template_fake_bingo_model_0_" + str(i) + ".dat"
     np.savetxt(dfile, output_gain)
